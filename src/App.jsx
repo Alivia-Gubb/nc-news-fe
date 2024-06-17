@@ -1,17 +1,60 @@
 
-import { Route, Routes } from 'react-router-dom'
-import Articles from '../components/Articles'
-import './App.css'
+import { Route, Routes } from "react-router-dom";
+import Articles from "../components/Articles";
+import { AppShell, createTheme, MantineProvider, Group, Text, NavLink } from "@mantine/core";
+import { NavLink as Link } from "react-router-dom";
+
+// Mantine theme
+const theme = createTheme({
+    fontFamily: "Montserrat, sans-serif",
+    defaultRadius: "md",
+    colors: {
+        "magenta": [
+            "#ffe9f6",
+            "#ffd1e6",
+            "#faa1c9",
+            "#f66eab",
+            "#f24391",
+            "#f02881",
+            "#f01879",
+            "#d60867",
+            "#c0005c",
+            "#a9004f"
+        ]
+    },
+    primaryColor: "magenta"
+});
 
 function App() {
-  return (
-    <header>
-      <h1>NC News</h1>
-          <Routes>
-            <Route path='/' element={<Articles />} />
-          </Routes>
-    </header>
-  )
+
+    return (
+        <MantineProvider theme={theme}>
+            <AppShell
+                header={{ height: 60 }}
+                padding="md"
+            >
+                <AppShell.Header>
+                    <Group justify="space-between" h="100%" px="md">
+                        <Text size="xl">
+                            NC News
+                        </Text>
+                        <Group h="100%">
+                            <NavLink
+                                component={ Link }
+                                to="/"
+                                label="Home"
+                            />
+                        </Group>
+                    </Group>
+                </AppShell.Header>
+                <AppShell.Main>
+                    <Routes>
+                        <Route path='/' element={<Articles />} />
+                    </Routes>
+                </AppShell.Main>
+            </AppShell>
+        </MantineProvider>
+    );
 }
 
-export default App
+export default App;

@@ -4,12 +4,12 @@ import { useState } from "react";
 
 
 const Articles = () => {
-    const [articles,setArticles] = useState([])
+    const [articles,setArticles] = useState([]);
 
     useEffect(() => {
         getArticles().then((articlesResponse) => {
-            setArticles(articlesResponse)
-        }) 
+            setArticles(articlesResponse);
+        }); 
     }, []);
 
     return (
@@ -22,14 +22,11 @@ const Articles = () => {
                                 {article.title}
                             </h3>
                         </li>
-                    )
+                    );
                 })
             }
         </ul>
-    )
-    };
-        
+    );
+};
 
-
-
-export default Articles
+export default Articles;
