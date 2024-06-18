@@ -3,18 +3,20 @@ import { getArticles } from "../api";
 import { useState } from "react";
 import { Grid } from "@mantine/core";
 import ArticleCard from "./ArticleCard";
+import Loading from "../Loading";
 
 
 const Articles = () => {
-    const [articles,setArticles] = useState([]);
+    const [articles, setArticles] = useState([]);
 
     useEffect(() => {
         getArticles().then((articlesResponse) => {
-            console.log(articlesResponse);
             setArticles(articlesResponse);
         }); 
     }, []);
 
+    if (articles.length === 0) return <Loading />;
+    
     return (
         <Grid>
             {
@@ -30,4 +32,4 @@ const Articles = () => {
     );
 };
 
-export default Articles;
+export default Articles;   
