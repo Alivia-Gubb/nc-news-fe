@@ -1,6 +1,6 @@
 
 import { Route, Routes } from "react-router-dom";
-import Articles from "../components/Articles";
+import Articles from "../components/articles/Articles";
 import { AppShell, createTheme, MantineProvider, Group, Text, NavLink } from "@mantine/core";
 import { NavLink as Link } from "react-router-dom";
 
@@ -50,6 +50,7 @@ function App() {
                 <AppShell.Main>
                     <Routes>
                         <Route path='/' element={<Articles />} />
+                        <Route path='/article/:article_id' element{/>} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>

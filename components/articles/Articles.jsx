@@ -1,6 +1,8 @@
 import { useEffect } from "react";
-import { getArticles } from "./api";
+import { getArticles } from "../api";
 import { useState } from "react";
+import { Grid } from "@mantine/core";
+import ArticleCard from "./ArticleCard";
 
 
 const Articles = () => {
@@ -13,19 +15,17 @@ const Articles = () => {
     }, []);
 
     return (
-        <ul>
+        <Grid>
             {
                 articles.map((article) => {
                     return (
-                        <li key={article.article_id}>
-                            <h3>
-                                {article.title}
-                            </h3>
-                        </li>
+                        <Grid.Col key={article.article_id} span={{ base: 12, md: 6, lg: 3 }}>
+                            <ArticleCard article={article}/>
+                        </Grid.Col>
                     );
                 })
             }
-        </ul>
+        </Grid>
     );
 };
 
