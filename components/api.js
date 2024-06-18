@@ -11,10 +11,13 @@ export const getArticles = () => {
             return (response.data?.articles);
         });
 };
-export const GetArticleId = () => {
+export const getSingleArticle = (articleId) => {
+    console.log("fetching article id: ", articleId);
+    const singleArticleURL = `${ncNews}/api/articles/${articleId}`;
     return axios 
-        .get(`/api/articles/${articles.article_id}`)
+        .get(singleArticleURL)
         .then((response) => {
-            return (response.data?.articles);
+            console.log(response);
+            return (response.data?.article);
         });
 }; 

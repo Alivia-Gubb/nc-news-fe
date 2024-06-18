@@ -10,6 +10,7 @@ const Articles = () => {
 
     useEffect(() => {
         getArticles().then((articlesResponse) => {
+            console.log(articlesResponse);
             setArticles(articlesResponse);
         }); 
     }, []);
