@@ -3,7 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Articles from "../components/articles/Articles";
 import { AppShell, createTheme, MantineProvider, Group, Text, NavLink } from "@mantine/core";
 import { NavLink as Link } from "react-router-dom";
-import SingleArticle from "../components/SingleArticle";
+import SingleArticle from "../components/single-article/SingleArticle";
+import Error from "../components/Error";
+
 
 // Mantine theme
 const theme = createTheme({
@@ -52,6 +54,7 @@ function App() {
                     <Routes>
                         <Route path='/' element={<Articles />} />
                         <Route path='/article/:article_id' element={<SingleArticle />} />
+                        <Route path='*' element={<Error />} />
                     </Routes>
                 </AppShell.Main>
             </AppShell>
