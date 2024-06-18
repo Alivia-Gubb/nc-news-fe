@@ -23,9 +23,9 @@ const SingleArticle = () => {
         <section>
             <Container>
                 <Image src={article.article_img_url} mb="lg" />
-                <Title order={4}>{article.title}</Title>
-                <Title order={5}>{article.author}</Title>
-                <Divider size="md"/>
+                <Title order={1}>{article.title}</Title>
+                <Text c="dimmed">{article.author}</Text>
+                <Divider size="md" my="lg"/>
 
                 { article.body }
                 
