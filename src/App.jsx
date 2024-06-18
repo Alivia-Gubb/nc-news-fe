@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import { Route, Routes } from "react-router-dom";
+import Articles from "../components/articles/Articles";
+import { AppShell, createTheme, MantineProvider, Group, Text, NavLink } from "@mantine/core";
+import { NavLink as Link } from "react-router-dom";
+
+// Mantine theme
+const theme = createTheme({
+    fontFamily: "Montserrat, sans-serif",
+    defaultRadius: "md",
+    colors: {
+        "magenta": [
+            "#ffe9f6",
+            "#ffd1e6",
+            "#faa1c9",
+            "#f66eab",
+            "#f24391",
+            "#f02881",
+            "#f01879",
+            "#d60867",
+            "#c0005c",
+            "#a9004f"
+        ]
+    },
+    primaryColor: "magenta"
+});
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <MantineProvider theme={theme}>
+            <AppShell
+                header={{ height: 60 }}
+                padding="md"
+            >
+                <AppShell.Header>
+                    <Group justify="space-between" h="100%" px="md">
+                        <Text size="xl">
+                            NC News
+                        </Text>
+                        <Group h="100%">
+                            <NavLink
+                                component={ Link }
+                                to="/"
+                                label="Home"
+                            />
+                        </Group>
+                    </Group>
+                </AppShell.Header>
+                <AppShell.Main>
+                    <Routes>
+                        <Route path='/' element={<Articles />} />
+                        <Route path='/article/:article_id' element{/>} />
+                    </Routes>
+                </AppShell.Main>
+            </AppShell>
+        </MantineProvider>
+    );
 }
 
-export default App
+export default App;
