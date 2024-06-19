@@ -8,7 +8,7 @@ export const getArticles = () => {
     return axios
         .get(articlesURL)
         .then((response) => {
-            return (response.data?.articles);
+            return response.data?.articles;
         });
 };
 export const getSingleArticle = (articleId) => {
@@ -17,7 +17,16 @@ export const getSingleArticle = (articleId) => {
     return axios 
         .get(singleArticleURL)
         .then((response) => {
-            console.log(response);
-            return (response.data?.article);
+            
+            return response.data?.article;
         });
 }; 
+export const getComments = (articleId) => {
+    const articleCommentsURL = `${ncNews}/api/articles/${articleId}/comments`;
+    return axios
+        .get(articleCommentsURL)
+        .then((response) => {
+            console.log(response);
+            return response.data?.comments;
+        });
+};
