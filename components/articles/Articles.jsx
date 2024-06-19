@@ -8,6 +8,7 @@ import Loading from "../Loading";
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
+    
 
     useEffect(() => {
         getArticles().then((articlesResponse) => {
@@ -18,7 +19,7 @@ const Articles = () => {
     if (articles.length === 0) return <Loading />;
     
     return (
-        <Grid>
+        <Grid h="100%">
             {
                 articles.map((article) => {
                     return (

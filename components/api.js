@@ -26,7 +26,21 @@ export const getComments = (articleId) => {
     return axios
         .get(articleCommentsURL)
         .then((response) => {
-            console.log(response);
             return response.data?.comments;
+        });
+};
+
+// Create axios patch request to backend
+// Request body needs to be { inc_votes: 1 } to increase votes by 1 when click vote button
+export const updateVote = (articleId, voteAmount) => {
+    const updateVoteURL = `${ncNews}/api/articles/${articleId}`;
+    const reqBody = {
+        inc_votes: voteAmount
+    };
+
+    return axios
+        .patch(updateVoteURL, reqBody)
+        .then((response) => {
+            return response.data?.article;
         });
 };

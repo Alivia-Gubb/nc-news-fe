@@ -18,9 +18,6 @@ const CommentCard = ({comment}) => {
                     by {comment.author} 
                 </Text>
             </Group>
-        
-            
-            
         </Card>
     );
 };
