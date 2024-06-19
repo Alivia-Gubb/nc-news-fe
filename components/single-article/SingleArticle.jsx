@@ -5,6 +5,7 @@ import { getSingleArticle } from "../api";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading";
 import Error from "../Error";
+import Comments from "./Comments";
 
 const SingleArticle = () => {
 
@@ -15,10 +16,8 @@ const SingleArticle = () => {
 
     useEffect(() => {
         getSingleArticle(article_id).then((articleResponse) => {
-            console.log(articleResponse);
             setArticle(articleResponse);
         }).catch((err) => {
-            console.log(err);
             setError(err);
         });
     }, [ article_id ]);
@@ -35,7 +34,13 @@ const SingleArticle = () => {
                 <Text c="dimmed">{article.author}</Text>
                 <Divider size="md" my="lg"/>
 
-                { article.body }
+                <Text>
+                    { article.body }
+                </Text>
+
+                <Title order={4} my="lg">Comments</Title>
+                <Divider size="md" my="lg"/>
+                <Comments articleId={article_id} />
                 
             </Container>
         </section>
