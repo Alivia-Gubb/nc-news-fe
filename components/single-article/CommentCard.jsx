@@ -1,4 +1,4 @@
-import { Card, Text, Group, Badge } from "@mantine/core";
+import { Card, Text, Group, Button } from "@mantine/core";
 
 const CommentCard = ({comment}) => {
     return (
@@ -8,12 +8,12 @@ const CommentCard = ({comment}) => {
             padding="xs"
             h="100%"
         >
-            <Text> {comment.body}</Text>
+            <Text size="sm"> {comment.body}</Text>
 
             <Group justify="space-between" component="section">
-                <Badge>
+                <Button variant="light">
                     {comment.votes}
-                </Badge>
+                </Button>
                 <Text mt="xs" c="dimmed" size="sm">
                     by {comment.author} 
                 </Text>

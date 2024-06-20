@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 
 // Mantine UI
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
