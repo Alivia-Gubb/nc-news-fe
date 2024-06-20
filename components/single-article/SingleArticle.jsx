@@ -1,7 +1,7 @@
-import { Text, Image, Container, Divider, Title } from "@mantine/core";
+import { Text, Image, Container, Divider, Title, Group, Button } from "@mantine/core";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getSingleArticle } from "../api";
+import { getSingleArticle, updateVote } from "../api";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading";
 import Error from "../Error";
@@ -13,6 +13,23 @@ const SingleArticle = () => {
 
     const [error, setError] = useState(undefined);
     const [article, setArticle] = useState(undefined);
+    // const [vote, setVote] = useState(0);
+
+    const handleUpVote = () => {
+        updateVote(article_id, 1).then((articleResponse) => {
+            setArticle(articleResponse);
+        }).catch((err) => {
+            setError(err);
+        });
+    };
+
+    const handleDownVote = () => {
+        updateVote(article_id, -1).then((articleResponse) => {
+            setArticle(articleResponse);
+        }).catch((err) => {
+            setError(err);
+        });
+    };
 
     useEffect(() => {
         getSingleArticle(article_id).then((articleResponse) => {
@@ -31,16 +48,26 @@ const SingleArticle = () => {
             <Container>
                 <Image src={article.article_img_url} mb="lg" />
                 <Title order={1}>{article.title}</Title>
-                <Text c="dimmed">{article.author}</Text>
+                <Group justify="space-between" align="flex-end">
+                    <Text c="dimmed">{article.author}</Text>
+                    <Group>
+                        <Button onClick={handleDownVote} size="compact-md">
+                            -
+                        </Button>
+                        <Text c="dimmed">{article.votes}</Text>
+                        <Button onClick={handleUpVote} size="compact-md">
+                            +
+                        </Button>
+                    </Group>
+                </Group>
                 <Divider size="md" my="lg"/>
 
                 <Text>
                     { article.body }
                 </Text>
 
-                <Title order={4} my="lg">Comments</Title>
-                <Divider size="md" my="lg"/>
                 <Comments articleId={article_id} />
+                
                 
             </Container>
         </section>

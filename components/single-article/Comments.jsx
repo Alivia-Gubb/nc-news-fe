@@ -1,7 +1,7 @@
 import { getComments } from "../api";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Container, Loader, Stack, Text } from "@mantine/core";
+import { Stack, Title, Divider } from "@mantine/core";
 import CommentCard from "./CommentCard";
 
 const Comments = ({articleId}) => {
@@ -13,25 +13,26 @@ const Comments = ({articleId}) => {
         });
     }, [articleId]);
 
-    if(comments.length === 0) return (
-        <Container>
-            <Loader />
-        </Container>
-    );
+    
+    if(comments.length === 0) return <p>No comments yet</p>;     
 
     return(
-        <Stack>
-            {
-                comments.map((comment) => {
-                    return (
-                        <section key="comment_id">
-                            <CommentCard comment={comment} />
-                        </section>
-                    );
-                })
-            }
-            
-        </Stack>
+        <>
+            <Title order={4} mt="lg" mb="sm">Comments</Title>
+            <Divider size="sm" my="md"/>
+            <Stack>
+                {
+                    comments.map((comment) => {
+                        return (
+                            <section key={comment.comment_id}>
+                                <CommentCard comment={comment} />
+                            </section>
+                        );
+                    })
+                }
+                
+            </Stack>
+        </>
     );
 };
 
