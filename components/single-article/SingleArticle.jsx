@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import Loading from "../Loading";
 import Error from "../Error";
 import Comments from "./Comments";
+import { IconExclamationCircle, IconThumbDown, IconThumbUp } from "@tabler/icons-react";
+import { notifications } from "@mantine/notifications";
 
 const SingleArticle = () => {
 
@@ -13,27 +15,38 @@ const SingleArticle = () => {
 
     const [error, setError] = useState(undefined);
     const [article, setArticle] = useState(undefined);
-    // const [vote, setVote] = useState(0);
+    const [votes, setVotes] = useState(0);
 
     const handleUpVote = () => {
-        updateVote(article_id, 1).then((articleResponse) => {
-            setArticle(articleResponse);
+        updateVote(article_id, 1).then(() => {
+            setVotes(votes + 1);
         }).catch((err) => {
-            setError(err);
+            notifications.show({
+                title: "Error!",
+                message: `An error has occurred: ${err}`,
+                icon: <IconExclamationCircle />,
+                color: "red"
+            });
         });
-    };
+    };      
 
     const handleDownVote = () => {
-        updateVote(article_id, -1).then((articleResponse) => {
-            setArticle(articleResponse);
+        updateVote(article_id, -1).then(() => {
+            setVotes(votes - 1);
         }).catch((err) => {
-            setError(err);
+            notifications.show({
+                title: "Error!",
+                message: `An error has occurred: ${err}`,
+                icon: <IconExclamationCircle />,
+                color: "red"
+            });
         });
     };
 
     useEffect(() => {
         getSingleArticle(article_id).then((articleResponse) => {
             setArticle(articleResponse);
+            setVotes(articleResponse.votes);
         }).catch((err) => {
             setError(err);
         });
@@ -51,12 +64,12 @@ const SingleArticle = () => {
                 <Group justify="space-between" align="flex-end">
                     <Text c="dimmed">{article.author}</Text>
                     <Group>
-                        <Button onClick={handleDownVote} size="compact-md">
-                            -
+                        <Button variant="subtle" onClick={handleUpVote} size="compact-sm">
+                            <IconThumbUp />
                         </Button>
-                        <Text c="dimmed">{article.votes}</Text>
-                        <Button onClick={handleUpVote} size="compact-md">
-                            +
+                        <Text c="dimmed">{votes}</Text>
+                        <Button variant="subtle" onClick={handleDownVote} size="compact-sm">
+                            <IconThumbDown />
                         </Button>
                     </Group>
                 </Group>
@@ -67,7 +80,6 @@ const SingleArticle = () => {
                 </Text>
 
                 <Comments articleId={article_id} />
-                
                 
             </Container>
         </section>
