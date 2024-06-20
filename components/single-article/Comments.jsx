@@ -70,7 +70,7 @@ const Comments = ({articleId}) => {
                             mb="sm"
                         />
                         <Group justify="flex-end">
-                            <Button disabled={sendingComment} type="submit">Submit</Button>
+                            <Button loading={sendingComment} type="submit">Submit</Button>
                         </Group>
                     </form>
                 </section>
