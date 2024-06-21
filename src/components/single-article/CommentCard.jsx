@@ -32,10 +32,6 @@ const CommentCard = ({comment, refreshComments}) => {
             });
     };
 
-    // Handle method when button is clicked
-    // Only show button for comments that are posted by 'user'SS
-    // Show notification on completion/failure
-
     return (
         <Card
             withBorder
