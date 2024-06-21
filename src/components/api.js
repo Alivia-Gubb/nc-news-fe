@@ -62,3 +62,11 @@ export const deleteComment =(commentId) => {
             console.log("Comment deleted:", response.data);
         });
 };
+export const getTopics = () => {
+    const topicsURL = `${ncNews}/api/topics`;
+    return axios
+        .get(topicsURL)
+        .then((response) => {
+            return response.data?.topics;
+        });
+};
