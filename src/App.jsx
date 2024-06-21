@@ -1,11 +1,12 @@
 
 import { Route, Routes } from "react-router-dom";
 import Articles from "./components/articles/Articles";
-import { AppShell, createTheme, MantineProvider, Group, Text, NavLink } from "@mantine/core";
+import { AppShell, createTheme, MantineProvider, Group, Text, Anchor } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { NavLink as Link } from "react-router-dom";
 import SingleArticle from "./components/single-article/SingleArticle";
 import Error from "./components/Error";
+import Topics from "./components/topics/Topics";
 
 
 // Mantine theme
@@ -40,22 +41,42 @@ function App() {
             >
                 <AppShell.Header>
                     <Group justify="space-between" h="100%" px="md">
-                        <Text size="xl">
+                        <Text
+                            variant="gradient"
+                            gradient={{ from: "magenta", to: "yellow" }}
+                            size="32px"
+                            fw={600}
+                        >
                             NC News
                         </Text>
-                        <Group h="100%">
-                            <NavLink
+                        <Group h="100%" gap="lg">
+                            <Anchor
                                 component={ Link }
                                 to="/"
-                                label="Home"
-                            />
+                                underline="never"
+                            >
+                                Home
+                            </Anchor>
+                            <Anchor
+                                component={ Link }
+                                to="/topics"
+                                underline="never"
+                            >
+                                Topics
+                            </Anchor>
                         </Group>
                     </Group>
                 </AppShell.Header>
                 <AppShell.Main>
                     <Routes>
                         <Route path='/' element={<Articles />} />
+
                         <Route path='/article/:article_id' element={<SingleArticle />} />
+
+                        <Route path='/topics' element={<Topics />}>
+                            <Route path=':topic_slug' element={<Articles />} />
+                        </Route>
+                        
                         <Route path='*' element={<Error />} />
                     </Routes>
                 </AppShell.Main>
