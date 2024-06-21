@@ -1,11 +1,11 @@
 
 import { Route, Routes } from "react-router-dom";
-import Articles from "../components/articles/Articles";
+import Articles from "./components/articles/Articles";
 import { AppShell, createTheme, MantineProvider, Group, Text, NavLink } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { NavLink as Link } from "react-router-dom";
-import SingleArticle from "../components/single-article/SingleArticle";
-import Error from "../components/Error";
+import SingleArticle from "./components/single-article/SingleArticle";
+import Error from "./components/Error";
 
 
 // Mantine theme
