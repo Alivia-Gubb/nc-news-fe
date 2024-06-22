@@ -23,6 +23,7 @@ const CommentCard = ({comment, refreshComments}) => {
             refreshComments();
         })
             .catch((err) =>{
+                setLoading(false);
                 notifications.show({
                     title: "Error!",
                     message: `An error has occurred: ${err}`,
