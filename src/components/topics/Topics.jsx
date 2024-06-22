@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { getTopics } from "../api";
 import { useState } from "react";
-import { Group, ScrollArea } from "@mantine/core";
-// import TopicCard from "./TopicCard";
+import { Group, ScrollArea, Text } from "@mantine/core";
 import Loading from "../Loading";
 import TopicCard from "./TopicCard";
 import { Outlet } from "react-router-dom";
@@ -22,9 +21,12 @@ const Topics = () => {
     
     return (
         <>
+            <Text size="xl" fw={600}>
+                Topics
+            </Text>
             <Group w="100%" mb="md">
                 <ScrollArea w="100%" type="always">
-                    <Group wrap="nowrap">
+                    <Group grow wrap="nowrap">
                         {
                             topics.map((topic) => {
                                 return (
