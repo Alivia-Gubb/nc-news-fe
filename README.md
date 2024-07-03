@@ -1,8 +1,2 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A dynamic front-end application using JavaScript, React, and Vite, built on top of the back-end system I previously created. Leveraging React, I designed an interactive user interface that efficiently communicates with the back-end API to perform CRUD (Create, Read, Update, Delete) operations. Vite was utilised for its fast build and development server capabilities, enhancing the development experience and optimising the application's performance. The front-end features responsive design, ensuring a seamless user experience across various devices and screen sizes. Through this project, I showcase my skills in front-end development, including state management, component-based architecture, and efficient data fetching and rendering.
